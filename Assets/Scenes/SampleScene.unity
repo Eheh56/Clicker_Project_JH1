@@ -964,18 +964,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monTextUI: {fileID: 81243149}
-  bananeUI: {fileID: 1467395966}
   bananePrixUI: {fileID: 1201352270}
+  bananeUI: {fileID: 1467395966}
+  BananeTotal: 0
+  bananePrix: 20
+  bananeAuto: 0
+  banane: 1
+  bananeToClick: {fileID: 1259621489}
   poirePrixUI: {fileID: 2000074993}
+  poireUI: {fileID: 1182961419}
+  poireTotal: 0
+  poirePrix: 100
+  poireAuto: 0
+  poire: 1
+  poireToClick: {fileID: 1173173418}
   cacaPrixUI: {fileID: 1452849047}
   Money: 1
   TotalMoney: 100
-  BananeTotal: 0
-  bananePrix: 20
-  banane: 1
-  bananeToClick: {fileID: 1259621489}
   buttonToClick: {fileID: 1126087433}
-  bananeAuto: 0
   scaleFactor: 1.1
 --- !u!1 &1169981729
 GameObject:

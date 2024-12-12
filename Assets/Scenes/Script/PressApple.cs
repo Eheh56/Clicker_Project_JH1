@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections;
+
 
 public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,20 +11,30 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private Vector3 originalScale;
     private Vector3 enlargedScale;
     public TextMeshProUGUI monTextUI;
-    public TextMeshProUGUI bananeUI;
+    //banane
     public TextMeshProUGUI bananePrixUI;
+    public TextMeshProUGUI bananeUI;
+    public int BananeTotal = 0;
+    public int bananePrix = 20;
+    public int bananeAuto;
+    public int banane = 1; // Ajuster cette valeur si nécessaire
+    public Button bananeToClick;
+    //poire
     public TextMeshProUGUI poirePrixUI;
+    public TextMeshProUGUI poireUI;
+    public int poireTotal = 0;
+    public int poirePrix = 100;
+    public int poireAuto;
+    public int poire = 1; // Ajuster cette valeur si nécessaire
+    public Button poireToClick;
+
+    //caca
     public TextMeshProUGUI cacaPrixUI;
 
     public float Money;
     public float TotalMoney = 0;
 
-    public int BananeTotal = 0;
-    public int bananePrix = 20;
-    public int banane = 1; // Ajuster cette valeur si nécessaire
-    public Button bananeToClick;
     public Button buttonToClick;
-    public int bananeAuto;
 
     [SerializeField]
     private float scaleFactor = 1.1f;
@@ -51,6 +63,12 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             bananeToClick.onClick.AddListener(CallBanane);
         }
+        if (poireToClick != null)
+        {
+            poireToClick.onClick.AddListener(CallPoire);
+        }
+        StartCoroutine(BananeCouroutine());
+        StartCoroutine(PoireCouroutine());
     }
 
     private void UpdateUI()
@@ -62,6 +80,11 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             bananeUI.text = BananeTotal.ToString("0");
 
         bananePrixUI.text = bananePrix.ToString("0 $");
+
+        if (poireUI != null)
+            poireUI.text = poireTotal.ToString("0");
+
+        poirePrixUI.text = poirePrix.ToString("0 $");
     }
 
     public void CallBanane()
@@ -77,6 +100,41 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         else
         {
             Debug.Log("Pas assez d'argent pour acheter une banane.");
+        }
+    }
+    public void CallPoire()
+    {
+        if (Money >= poirePrix)
+        {
+            Money -= poirePrix;
+            poirePrix = poirePrix + 50;
+            poireTotal += poire;
+            UpdateUI();
+            Debug.Log("poire achetée!");
+        }
+        else
+        {
+            Debug.Log("Pas assez d'argent pour acheter une poire.");
+        }
+    }
+    IEnumerator BananeCouroutine()
+    {
+        while (true)
+        {
+            Money += BananeTotal;
+            UpdateUI() ;
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+    IEnumerator PoireCouroutine()
+    {
+        while (true)
+        {
+            Money += poireTotal * 10;
+            UpdateUI();
+
+            yield return new WaitForSeconds(1);
         }
     }
 
