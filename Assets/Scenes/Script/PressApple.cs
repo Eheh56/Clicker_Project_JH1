@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 
 
 public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -28,8 +29,14 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public int poire = 1; // Ajuster cette valeur si nécessaire
     public Button poireToClick;
 
-    //caca
-    public TextMeshProUGUI cacaPrixUI;
+    //melon
+    public TextMeshProUGUI melonPrixUI;
+    public TextMeshProUGUI melonUI;
+    public int melonTotal = 0;
+    public int melonPrix = 1000;
+    public int melonAuto;
+    public int melon = 1; // Ajuster cette valeur si nécessaire
+    public Button melonToClick;
 
     public float Money;
     public float TotalMoney = 0;
@@ -67,14 +74,20 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             poireToClick.onClick.AddListener(CallPoire);
         }
+        if (melonToClick != null)
+        {
+            melonToClick.onClick.AddListener(CallMelon);
+        }
+
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
+        StartCoroutine(melonCouroutine());
     }
 
     private void UpdateUI()
     {
         if (monTextUI != null)
-            monTextUI.text = Money.ToString("0");
+            monTextUI.text = Money.ToString("0 $");
 
         if (bananeUI != null)
             bananeUI.text = BananeTotal.ToString("0");
@@ -85,6 +98,11 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             poireUI.text = poireTotal.ToString("0");
 
         poirePrixUI.text = poirePrix.ToString("0 $");
+
+        if (melonUI != null)
+            melonUI.text = melonTotal.ToString("0");
+
+        melonPrixUI.text = melonPrix.ToString("0 $");
     }
 
     public void CallBanane()
@@ -117,6 +135,23 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             Debug.Log("Pas assez d'argent pour acheter une poire.");
         }
     }
+
+    public void CallMelon()
+    {
+        if (Money >= melonPrix)
+        {
+            Money -= melonPrix;
+            melonPrix = melonPrix + 500;
+            melonTotal += melon;
+            UpdateUI();
+            Debug.Log("melon achetée!");
+        }
+        else
+        {
+            Debug.Log("Pas assez d'argent pour acheter un melon.");
+        }
+    }
+
     IEnumerator BananeCouroutine()
     {
         while (true)
@@ -131,10 +166,21 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         while (true)
         {
-            Money += poireTotal * 10;
+            Money += poireTotal;
             UpdateUI();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator melonCouroutine()
+    {
+        while (true)
+        {
+            Money += melonTotal;
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

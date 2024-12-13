@@ -149,15 +149,15 @@ RectTransform:
   m_GameObject: {fileID: 81243147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3683648, y: 0.3683648, z: 0.3683648}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1126087432}
+  m_Father: {fileID: 108400230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304.43335, y: 287.30618}
-  m_SizeDelta: {x: 244.3098, y: 112.1}
+  m_AnchoredPosition: {x: -587.6787, y: 498.9773}
+  m_SizeDelta: {x: 721.8427, y: 82.0455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81243149
 MonoBehaviour:
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -38.693115}
+  m_margin: {x: 0, y: 0, z: 0, w: 34.773376}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -306,10 +306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1925.66, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -352,6 +352,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 81243148}
   - {fileID: 1126087432}
   - {fileID: 1259621488}
   - {fileID: 1173173417}
@@ -510,7 +511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'caca
+  m_text: 'melon
 
 '
   m_isRightToLeft: 0
@@ -848,8 +849,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.7147, y: 2.7147, z: 2.7147}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 81243148}
+  m_Children: []
   m_Father: {fileID: 108400230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -978,9 +978,15 @@ MonoBehaviour:
   poireAuto: 0
   poire: 1
   poireToClick: {fileID: 1173173418}
-  cacaPrixUI: {fileID: 1452849047}
+  melonPrixUI: {fileID: 1452849047}
+  melonUI: {fileID: 1734915157}
+  melonTotal: 0
+  melonPrix: 1000
+  melonAuto: 0
+  melon: 1
+  melonToClick: {fileID: 1592019194}
   Money: 1
-  TotalMoney: 100
+  TotalMoney: 1000
   buttonToClick: {fileID: 1126087433}
   scaleFactor: 1.1
 --- !u!1 &1169981729
@@ -1087,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 739, y: 445}
+  m_AnchoredPosition: {x: 8, y: 438}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1173173418
@@ -1206,7 +1212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 507.44006, y: 440.51}
+  m_AnchoredPosition: {x: -223.55994, y: 433.51}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182961419
@@ -1371,8 +1377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 897, y: 491.3}
-  m_SizeDelta: {x: 107.9321, y: 45.0941}
+  m_AnchoredPosition: {x: 327.15222, y: 484.3}
+  m_SizeDelta: {x: 430.2365, y: 45.0941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1201352270
 MonoBehaviour:
@@ -1510,7 +1516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 739.00006, y: 494.52}
+  m_AnchoredPosition: {x: 8.000061, y: 487.52}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259621489
@@ -1619,12 +1625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0554b0cbcab974e893ef3728f62f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BananeTotal: 0
-  banane: 1
-  monTextUI: {fileID: 0}
-  TotalMoney: 0
-  buttonToClick: {fileID: 0}
-  money: {fileID: 0}
 --- !u!1 &1394660658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1771,7 @@ GameObject:
   - component: {fileID: 1452849048}
   - component: {fileID: 1452849047}
   m_Layer: 5
-  m_Name: cacaPrix
+  m_Name: melonPrix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1793,8 +1793,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 897, y: 399.45996}
-  m_SizeDelta: {x: 107.9321, y: 45.0941}
+  m_AnchoredPosition: {x: 327.15222, y: 392.45996}
+  m_SizeDelta: {x: 430.2365, y: 45.0941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452849047
 MonoBehaviour:
@@ -1929,7 +1929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 507.44006, y: 486.18}
+  m_AnchoredPosition: {x: -223.55994, y: 479.18}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467395966
@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 1592019195}
   - component: {fileID: 1592019194}
   m_Layer: 5
-  m_Name: caca
+  m_Name: melon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2065,7 +2065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 739.00006, y: 401.77}
+  m_AnchoredPosition: {x: 8.000061, y: 394.77}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592019194
@@ -2162,7 +2162,7 @@ GameObject:
   - component: {fileID: 1734915158}
   - component: {fileID: 1734915157}
   m_Layer: 5
-  m_Name: 0 caca
+  m_Name: 0 melon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2184,7 +2184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 507.44006, y: 399.46}
+  m_AnchoredPosition: {x: -223.55994, y: 392.46}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734915157
@@ -2402,8 +2402,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 897, y: 442.96}
-  m_SizeDelta: {x: 107.9321, y: 45.0941}
+  m_AnchoredPosition: {x: 327.15222, y: 435.96}
+  m_SizeDelta: {x: 430.2365, y: 45.0941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000074993
 MonoBehaviour:
