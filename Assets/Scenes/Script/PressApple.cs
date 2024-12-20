@@ -214,6 +214,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             Money *= ceriseTotal;
             UpdateUI();
+            yield return new WaitForSeconds(0.1f);
 
         }
     }
