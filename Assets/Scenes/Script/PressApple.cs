@@ -15,28 +15,37 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     //banane
     public TextMeshProUGUI bananePrixUI;
     public TextMeshProUGUI bananeUI;
-    public int BananeTotal = 0;
-    public int bananePrix = 20;
-    public int bananeAuto;
-    public int banane = 1; // Ajuster cette valeur si nécessaire
+    public long BananeTotal = 0;
+    public long bananePrix = 20;
+    public long bananeAuto;
+    public long banane = 1; // Ajuster cette valeur si nécessaire
     public Button bananeToClick;
     //poire
     public TextMeshProUGUI poirePrixUI;
     public TextMeshProUGUI poireUI;
-    public int poireTotal = 0;
-    public int poirePrix = 100;
-    public int poireAuto;
-    public int poire = 1; // Ajuster cette valeur si nécessaire
+    public long poireTotal = 0;
+    public long poirePrix = 100;
+    public long poireAuto;
+    public long poire = 1; // Ajuster cette valeur si nécessaire
     public Button poireToClick;
 
     //melon
     public TextMeshProUGUI melonPrixUI;
     public TextMeshProUGUI melonUI;
-    public int melonTotal = 0;
-    public int melonPrix = 1000;
-    public int melonAuto;
-    public int melon = 1; // Ajuster cette valeur si nécessaire
+    public long melonTotal = 0;
+    public long melonPrix = 1000;
+    public long melonAuto;
+    public long melon = 1; // Ajuster cette valeur si nécessaire
     public Button melonToClick;
+
+    //cerise
+    public TextMeshProUGUI cerisePrixUI;
+    public TextMeshProUGUI ceriseUI;
+    public long ceriseTotal = 1;
+    public long cerisePrix = 10000;
+    public long cerise = 1;
+    public Button ceriseToClick;
+       
 
     public float Money;
     public float TotalMoney = 0;
@@ -78,10 +87,15 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             melonToClick.onClick.AddListener(CallMelon);
         }
+        if (ceriseToClick != null)
+        {
+            ceriseToClick.onClick.AddListener(CallCerise);
+        }
 
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
         StartCoroutine(melonCouroutine());
+        StartCoroutine(ceriseCouroutine());
     }
 
     private void UpdateUI()
@@ -103,6 +117,12 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             melonUI.text = melonTotal.ToString("0");
 
         melonPrixUI.text = melonPrix.ToString("0 $");
+
+        if (ceriseUI != null)
+            ceriseUI.text = ceriseTotal.ToString("multiplicateur : x 0");
+
+        cerisePrixUI.text = cerisePrix.ToString("0 $");
+
     }
 
     public void CallBanane()
@@ -152,6 +172,22 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
     }
 
+    public void CallCerise()
+    {
+        if (Money >= cerisePrix)
+        {
+            Money -= cerisePrix;
+            cerisePrix *= 10;
+            ceriseTotal *=2;
+            UpdateUI();
+            Debug.Log("Cerise Acheté");
+        }
+        else
+        {
+            Debug.Log("Pas assez d'argent pour acheter une cerise.");
+        }
+    }
+
     IEnumerator BananeCouroutine()
     {
         while (true)
@@ -170,6 +206,15 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             UpdateUI();
 
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator ceriseCouroutine()
+    {
+        while (true)
+        {
+            Money *= ceriseTotal;
+            UpdateUI();
+
         }
     }
 
