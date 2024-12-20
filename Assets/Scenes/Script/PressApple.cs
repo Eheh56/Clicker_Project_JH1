@@ -95,7 +95,6 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
         StartCoroutine(melonCouroutine());
-        StartCoroutine(ceriseCouroutine());
     }
 
     private void UpdateUI()
@@ -192,7 +191,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         while (true)
         {
-            Money += BananeTotal;
+            Money += BananeTotal*ceriseTotal;
             UpdateUI() ;
 
             yield return new WaitForSeconds(1);
@@ -202,28 +201,19 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         while (true)
         {
-            Money += poireTotal;
+            Money += poireTotal*ceriseTotal;
             UpdateUI();
 
             yield return new WaitForSeconds(0.1f);
         }
     }
-    IEnumerator ceriseCouroutine()
-    {
-        while (true)
-        {
-            Money *= ceriseTotal;
-            UpdateUI();
-            yield return new WaitForSeconds(0.1f);
-
-        }
-    }
+ 
 
     IEnumerator melonCouroutine()
     {
         while (true)
-        {
-            Money += melonTotal;
+        {   
+            Money += melonTotal * ceriseTotal;
             UpdateUI();
 
             yield return new WaitForSeconds(0.01f);
