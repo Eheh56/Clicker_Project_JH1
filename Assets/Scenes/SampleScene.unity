@@ -1699,7 +1699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monTextUI: {fileID: 81243149}
   monTextUUI: {fileID: 510391209}
-  Apple: 560000000000
   bananePrixUI: {fileID: 1201352270}
   bananeUI: {fileID: 1467395966}
   BananeTotal: 0
@@ -1727,7 +1726,10 @@ MonoBehaviour:
   cerisePrix: 10000
   cerise: 1
   ceriseToClick: {fileID: 416832772}
-  Money: 0
+  ApplePrix: 560000000000
+  AppleToClick: {fileID: 1658367409}
+  Apple: 0
+  Money: 560000000000
   TotalMoney: 0
   buttonToClick: {fileID: 1126087433}
   scaleFactor: 1.1
@@ -3244,8 +3246,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 94519afe9d34aa64fb053671e9176152, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

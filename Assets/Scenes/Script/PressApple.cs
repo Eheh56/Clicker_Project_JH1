@@ -14,7 +14,6 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public TextMeshProUGUI monTextUI;
     public TextMeshProUGUI monTextUUI;
 
-    public long Apple = 560000000000;
     //banane
     public TextMeshProUGUI bananePrixUI;
     public TextMeshProUGUI bananeUI;
@@ -48,9 +47,14 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public long cerisePrix = 10000;
     public long cerise = 1;
     public Button ceriseToClick;
-       
 
-    public long Money;
+    //Apple
+    public long ApplePrix = 560000000000;
+    public Button AppleToClick;
+    public long Apple = 0;
+
+
+    public long Money = 0;
     public long TotalMoney = 0;
 
     public Button buttonToClick;
@@ -94,6 +98,10 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             ceriseToClick.onClick.AddListener(CallCerise);
         }
+        if (AppleToClick != null)
+        {
+            AppleToClick.onClick.AddListener(CallApple);
+        }
         StartCoroutine(FinDuJeuCouroutine());
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
@@ -103,6 +111,8 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         StartCoroutine(PoireGreyCouroutine());
         StartCoroutine(MelonGreyCouroutine());
         StartCoroutine(CeriseGreyCouroutine());
+        StartCoroutine(AppleGreyCouroutine());
+        StartCoroutine(AppleCouroutine());
     }
 
 
@@ -198,10 +208,23 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             Debug.Log("Pas assez d'argent pour acheter une cerise.");
         }
     }
-
+    public void CallApple()
+    {
+        if (Money >= Apple)
+        {
+            Money -= ApplePrix;
+            UpdateUI();
+            Debug.Log("Apple Acheté");
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Debug.Log("Pas assez d'argent pour acheter Apple.");
+        }
+    }
     IEnumerator FinDuJeuCouroutine()
     {
-        while (Money >= Apple)
+        while (Money >= ApplePrix)
         {
             Money = 560000000000;
             yield return new WaitForSeconds(0.01f);
@@ -239,6 +262,19 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             UpdateUI();
 
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+    IEnumerator AppleCouroutine()
+    {
+        if (Apple != 0)
+        {
+            Money -= ApplePrix;
+            Time.timeScale = 0;
+            UpdateUI();
+
+            yield return new WaitForSeconds(2);
+
+            Time.timeScale = 0;
         }
     }
 
@@ -307,6 +343,24 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             else
             {
                 ceriseToClick.image.color = Color.white;
+            }
+
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator AppleGreyCouroutine()
+    {
+        while (true)
+        {
+            if (Money < ApplePrix)
+            {
+                AppleToClick.image.color = new Color(0.38f, 0.38f, 0.38f, 1f);
+            }
+            else
+            {
+                AppleToClick.image.color = Color.white;
             }
 
             UpdateUI();

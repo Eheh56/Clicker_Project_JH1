@@ -5,6 +5,7 @@ public class Trophy : ScriptableObject
 {
     public long price = 560000000000; // Le prix du trophée
     public Color trophyColor = Color.black; // Couleur du trophée (noir par défaut)
+    public Sprite image;
 
     // Méthode pour acheter le trophée
     public void BuyTrophy()
