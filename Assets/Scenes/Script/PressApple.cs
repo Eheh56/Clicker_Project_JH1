@@ -110,7 +110,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private void UpdateUI()
     {
         if (monTextUI != null)
-            monTextUI.text = Money.ToString("0 $ / '560 000 000 000 $'");
+            monTextUI.text = Money.ToString("000 000 000 000 $ / '560 000 000 000 $'");
         if (monTextUUI != null)
             monTextUUI.text = Money.ToString("0 $ / '560 000 000 000 $'");
 
