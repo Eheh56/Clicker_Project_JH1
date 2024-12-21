@@ -12,6 +12,9 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private Vector3 originalScale;
     private Vector3 enlargedScale;
     public TextMeshProUGUI monTextUI;
+    public TextMeshProUGUI monTextUUI;
+
+    public long Apple = 560000000000;
     //banane
     public TextMeshProUGUI bananePrixUI;
     public TextMeshProUGUI bananeUI;
@@ -47,8 +50,8 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public Button ceriseToClick;
        
 
-    public float Money;
-    public float TotalMoney = 0;
+    public long Money;
+    public long TotalMoney = 0;
 
     public Button buttonToClick;
 
@@ -91,16 +94,25 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             ceriseToClick.onClick.AddListener(CallCerise);
         }
-
+        StartCoroutine(FinDuJeuCouroutine());
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
         StartCoroutine(melonCouroutine());
+
+        StartCoroutine(BananeGreyCouroutine());
+        StartCoroutine(PoireGreyCouroutine());
+        StartCoroutine(MelonGreyCouroutine());
+        StartCoroutine(CeriseGreyCouroutine());
     }
 
+
+    
     private void UpdateUI()
     {
         if (monTextUI != null)
-            monTextUI.text = Money.ToString("0 $");
+            monTextUI.text = Money.ToString("0 $ / '560 000 000 000 $'");
+        if (monTextUUI != null)
+            monTextUUI.text = Money.ToString("0 $ / '560 000 000 000 $'");
 
         if (bananeUI != null)
             bananeUI.text = BananeTotal.ToString("0");
@@ -187,6 +199,16 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
     }
 
+    IEnumerator FinDuJeuCouroutine()
+    {
+        while (Money >= Apple)
+        {
+            Money = 560000000000;
+            yield return new WaitForSeconds(0.01f);
+
+        }
+    }
+
     IEnumerator BananeCouroutine()
     {
         while (true)
@@ -217,6 +239,79 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             UpdateUI();
 
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator BananeGreyCouroutine()
+    {
+        while (true)
+        {
+            if (Money < bananePrix)
+            {
+                bananeToClick.image.color = new Color(0.38f, 0.38f, 0.38f, 1f);
+            }
+            else
+            {
+                bananeToClick.image.color = Color.white;
+            }
+
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator PoireGreyCouroutine()
+    {
+        while (true)
+        {
+            if (Money < poirePrix)
+            {
+                poireToClick.image.color = new Color(0.38f, 0.38f, 0.38f, 1f);
+            }
+            else
+            {
+                poireToClick.image.color = Color.white;
+            }
+
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator MelonGreyCouroutine()
+    {
+        while (true)
+        {
+            if (Money < melonPrix)
+            {
+                melonToClick.image.color = new Color(0.38f, 0.38f, 0.38f, 1f);
+            }
+            else
+            {
+                melonToClick.image.color = Color.white;
+            }
+
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator CeriseGreyCouroutine()
+    {
+        while (true)
+        {
+            if (Money < cerisePrix)
+            {
+                ceriseToClick.image.color = new Color(0.38f, 0.38f, 0.38f, 1f);
+            }
+            else
+            {
+                ceriseToClick.image.color = Color.white;
+            }
+
+            UpdateUI();
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
