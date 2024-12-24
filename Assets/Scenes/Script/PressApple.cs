@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 
 public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -13,6 +14,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private Vector3 enlargedScale;
     public TextMeshProUGUI monTextUI;
     public TextMeshProUGUI monTextUUI;
+    public string GGWP;
 
     //banane
     public TextMeshProUGUI bananePrixUI;
@@ -22,6 +24,9 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public long bananeAuto;
     public long banane = 1; // Ajuster cette valeur si nécessaire
     public Button bananeToClick;
+    public Button bananeMAXToClick;
+
+    private Coroutine bananeCoroutine = null;  // Déclaration de la variable coroutine
     //poire
     public TextMeshProUGUI poirePrixUI;
     public TextMeshProUGUI poireUI;
@@ -30,6 +35,9 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public long poireAuto;
     public long poire = 1; // Ajuster cette valeur si nécessaire
     public Button poireToClick;
+    public Button poireMAXToClick;
+
+    private Coroutine poireCoroutine = null;  // Déclaration de la variable coroutine
 
     //melon
     public TextMeshProUGUI melonPrixUI;
@@ -39,6 +47,9 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public long melonAuto;
     public long melon = 1; // Ajuster cette valeur si nécessaire
     public Button melonToClick;
+    public Button melonMAXToClick;
+
+    private Coroutine melonCoroutine = null;  // Déclaration de la variable coroutine
 
     //cerise
     public TextMeshProUGUI cerisePrixUI;
@@ -102,6 +113,14 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             AppleToClick.onClick.AddListener(CallApple);
         }
+
+
+        bananeMAXToClick.onClick.AddListener(ToggleBananeMaxCoroutine);
+        poireMAXToClick.onClick.AddListener(TogglePoireMaxCoroutine);
+        melonMAXToClick.onClick.AddListener(ToggleMelonMaxCoroutine);
+
+
+
         StartCoroutine(FinDuJeuCouroutine());
         StartCoroutine(BananeCouroutine());
         StartCoroutine(PoireCouroutine());
@@ -115,8 +134,46 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         StartCoroutine(AppleCouroutine());
     }
 
+    public void ToggleBananeMaxCoroutine()
+    {
+        if (bananeCoroutine == null)  // Si la coroutine n'est pas déjà en cours, démarre-la
+        {
+            bananeCoroutine = StartCoroutine(BananeMaxCouroutine());
+        }
+        else  // Si la coroutine est déjà en cours, arrête-la
+        {
+            StopCoroutine(bananeCoroutine);
+            bananeCoroutine = null;  // Réinitialiser la référence
+        }
+    }
 
-    
+    public void TogglePoireMaxCoroutine()
+    {
+        if (poireCoroutine == null)  // Si la coroutine n'est pas déjà en cours, démarre-la
+        {
+            poireCoroutine = StartCoroutine(PoireMaxCouroutine());
+        }
+        else  // Si la coroutine est déjà en cours, arrête-la
+        {
+            StopCoroutine(poireCoroutine);
+            poireCoroutine = null;  // Réinitialiser la référence
+        }
+    }
+
+    public void ToggleMelonMaxCoroutine()
+    {
+        if (melonCoroutine == null)  // Si la coroutine n'est pas déjà en cours, démarre-la
+        {
+            melonCoroutine = StartCoroutine(MelonMaxCouroutine());
+        }
+        else  // Si la coroutine est déjà en cours, arrête-la
+        {
+            StopCoroutine(melonCoroutine);
+            melonCoroutine = null;  // Réinitialiser la référence
+        }
+    }
+
+
     private void UpdateUI()
     {
         if (monTextUI != null)
@@ -146,21 +203,21 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     }
 
-    public void CallBanane()
-    {
-        if (Money >= bananePrix)
+        public void CallBanane()
         {
-            Money -= bananePrix;
-            bananePrix = bananePrix + 5;
-            BananeTotal += banane;
-            UpdateUI();
-            Debug.Log("Banane achetée!");
+            if (Money >= bananePrix)
+            {
+                Money -= bananePrix;
+                bananePrix = bananePrix + 5;
+                BananeTotal += banane;
+                UpdateUI();
+                Debug.Log("Banane achetée!");
+            }
+            else
+            {
+                Debug.Log("Pas assez d'argent pour acheter une banane.");
+            }
         }
-        else
-        {
-            Debug.Log("Pas assez d'argent pour acheter une banane.");
-        }
-    }
     public void CallPoire()
     {
         if (Money >= poirePrix)
@@ -215,7 +272,11 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             Money -= ApplePrix;
             UpdateUI();
             Debug.Log("Apple Acheté");
-            Time.timeScale = 0;
+            Debug.Log("1");
+            SceneManager.LoadScene("GGWP");
+            Debug.Log("2");
+            Apple += 1;
+            Debug.Log("3");
         }
         else
         {
@@ -242,6 +303,15 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             yield return new WaitForSeconds(1);
         }
     }
+    IEnumerator BananeMaxCouroutine()
+    {
+        while (true)
+        {
+            CallBanane();
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     IEnumerator PoireCouroutine()
     {
         while (true)
@@ -252,7 +322,14 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             yield return new WaitForSeconds(0.1f);
         }
     }
- 
+    IEnumerator PoireMaxCouroutine()
+    {
+        while (true)
+        {
+            CallPoire();
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
 
     IEnumerator melonCouroutine()
     {
@@ -264,19 +341,29 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             yield return new WaitForSeconds(0.01f);
         }
     }
+    IEnumerator MelonMaxCouroutine()
+    {
+        while (true)
+        {
+            CallMelon();
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     IEnumerator AppleCouroutine()
     {
         if (Apple != 0)
         {
             Money -= ApplePrix;
-            Time.timeScale = 0;
             UpdateUI();
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.01f);
 
-            Time.timeScale = 0;
+
         }
     }
+
+    
 
     IEnumerator BananeGreyCouroutine()
     {
@@ -296,6 +383,11 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             yield return new WaitForSeconds(0.1f);
         }
     }
+
+    
+
+
+
     IEnumerator PoireGreyCouroutine()
     {
         while (true)
@@ -391,6 +483,39 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         rectTransform.localScale = originalScale;
     }
+
+    // Partie Sauvegarde / Load
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void AddMoney()
     {
