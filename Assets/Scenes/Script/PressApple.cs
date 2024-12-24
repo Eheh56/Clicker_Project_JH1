@@ -122,7 +122,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (monTextUI != null)
             monTextUI.text = Money.ToString("000 000 000 000 $ / '560 000 000 000 $'");
         if (monTextUUI != null)
-            monTextUUI.text = Money.ToString("0 $ / '560 000 000 000 $'");
+            monTextUUI.text = Money.ToString("000 000 000 000 $ / '560 000 000 000 $'");
 
         if (bananeUI != null)
             bananeUI.text = BananeTotal.ToString("0");
@@ -210,7 +210,7 @@ public class ButtonResizer : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     public void CallApple()
     {
-        if (Money >= Apple)
+        if (Money >= ApplePrix)
         {
             Money -= ApplePrix;
             UpdateUI();
